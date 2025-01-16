@@ -1,0 +1,92 @@
+language,instruction,sentence_trans,topics,topic_trans
+English,Classify the following sentence into one of the following topics:,Sentence,"1. science/technology
+2. travel
+3. politics
+4. sports
+5. health
+6. entertainment
+7. geography",topic
+German,Klassifizieren Sie den folgenden Satz in eines der folgenden Themen:,Satz,"1. Wissenschaft/Technologie
+2. Reisen
+3. Politik
+4. Sport
+5. Gesundheit
+6. Unterhaltung
+7. Geographie",Thema
+Dutch,Classificeer de volgende zin in een van de volgende onderwerpen:,zin,"1. wetenschap/technologie
+2. reizen
+3. politiek
+4. sport
+5. gezondheid
+6. amusement
+7. geografie",onderwerp
+Afrikaans,Klassifiseer die volgende sin in een van die volgende onderwerpe:,sin,"1. wetenskap/tegnologie
+2. reis
+3. politiek
+4. sport
+5. gesondheid
+6. vermaak
+7. geografie",onderwerp
+Swedish,Klassificera följande mening i ett av följande ämnen:,mening,"1. vetenskap/teknologi
+2. resor
+3. politik
+4. sport
+5. hälsa
+6. underhållning
+7. geografi",ämne
+Danish,Klassificér den følgende sætning i et af de følgende emner:,sætning,"1. videnskab/teknologi
+2. rejser
+3. politik
+4. sport
+5. sundhed
+6. underholdning
+7. geografi",emne
+Icelandic,Flokkaðu eftirfarandi setningu í eitt af eftirfarandi viðfangsefnum:,setningu,"1. vísindi/tækni
+2. ferðalög
+3. stjórnmál
+4. íþróttir
+5. heilsa
+6. afþreying
+7. landafræði",viðfangsefni
+Spanish,Clasifica la siguiente frase en uno de los siguientes temas:,frase,"1. ciencia/tecnología
+2. viajes
+3. política
+4. deportes
+5. salud
+6. entretenimiento
+7. geografía",tema
+Portuguese,Classifique a frase seguinte em um dos seguintes temas:,frase,"1. ciência/tecnologia
+2. viagens
+3. política
+4. esportes
+5. saúde
+6. entretenimento
+7. geografia",tema
+Catalan,Classifica la següent frase en un dels següents temes:,frase,"1. ciència/tecnologia
+2. viatges
+3. política
+4. esports
+5. salut
+6. entreteniment
+7. geografia",tema
+Galician,Clasifica a seguinte frase nun dos seguintes temas:,frase,"1. ciencia/tecnoloxía
+2. viaxes
+3. política
+4. deportes
+5. saúde
+6. entretemento
+7. xeografía",tema
+Finnish,Luokittele seuraava lause johonkin seuraavista aiheista:,lause,"1. tiede/teknologia
+2. matkailu
+3. politiikka
+4. urheilu
+5. terveys
+6. viihde
+7. maantiede",aihe
+Hungarian,Osztályozza a következő mondatot az alábbi témák egyikébe:,mondat,"1. tudomány/technológia
+2. utazás
+3. politika
+4. sport
+5. egészség
+6. szórakozás
+7. földrajz",téma

@@ -1,0 +1,1290 @@
+defaults: &default_values
+  hf_token: "{{ env('HF_TOKEN', None) }}"
+  cache_dir: "{{ env('CACHE_DIR', None) }}"
+  adapter_path: "{{ env('ADAPTER_PATH', None) }}"
+  eval_dir: "{{ env('EVAL_DIR', None) }}"
+  language_ratios: '1.0'
+  max_length: 4096
+  use_init: ''
+  task: 'question-answering'
+  task_dataset: 'MLQA-en'
+  task_data_split: 'sentence_split'
+  temperature: 0.6
+  top_p: 0.9
+  seeds: '42'
+  languages: 'english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian'
+  eval_all: ''
+  n_shots: 5
+
+configs:
+# 0 
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+
+# 1
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+
+# 2
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'spanish'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+
+# 3
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+
+# 4
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+
+# 5
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'spanish'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+
+# 6
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'english'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+
+# 7
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'german'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+
+# 8
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'spanish'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+
+# 9
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'english'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+
+# 10
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'german'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+
+# 11
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'spanish'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+
+# 12
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+
+# 13
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+
+# 14
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'spanish'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+
+# 15
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+
+# 16
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+
+# 17
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'spanish'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+
+# 18
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'english'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+
+# 19
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'german'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+
+# 20
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'spanish'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+
+# 21
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'english'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+
+# 22
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'german'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+
+# 23
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'spanish'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+
+# 24
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+
+# 25
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+
+# 26
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'spanish'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+
+# 27
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+
+# 28
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+
+# 29
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'spanish'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+
+# 30
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'english'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+
+# 31
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'german'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+
+# 32
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'spanish'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+
+# 33
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'english'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+
+# 34
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'german'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+
+# 35
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'spanish'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+
+# 36
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: '12500'
+
+# 37
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: '12500'
+
+# 38
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'spanish'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: '12500'
+
+# 39
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: '12500'
+
+# 40
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: '12500'
+
+# 41
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'spanish'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: '12500'
+
+# 42
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'english'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  merge_weights: ''
+
+# 43
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'german'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  merge_weights: ''
+
+# 44
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'spanish'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  merge_weights: ''
+
+# 45
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'english'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  merge_weights: ''
+
+# 46
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'german'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  merge_weights: ''
+
+# 47
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'spanish'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  merge_weights: ''
+
+# 48
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-3-8B_cc100'
+  lang_adapter_suffix: '12500'
+
+# 49
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-3-8B_cc100'
+  lang_adapter_suffix: '12500'
+
+# 50
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'spanish'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-3-8B_cc100'
+  lang_adapter_suffix: '12500'
+
+# 51
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-3-8B_cc100'
+  lang_adapter_suffix: '12500'
+
+# 52
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-3-8B_cc100'
+  lang_adapter_suffix: '12500'
+
+# 53
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'spanish'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-3-8B_cc100'
+  lang_adapter_suffix: '12500'
+
+# 54
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'english'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-3-8B_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  merge_weights: ''
+
+# 55
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'german'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-3-8B_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  merge_weights: ''
+
+# 56
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'spanish'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-3-8B_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  merge_weights: ''
+
+# 57
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'english'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-3-8B_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  merge_weights: ''
+
+# 58
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'german'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-3-8B_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  merge_weights: ''
+
+# 59
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'spanish'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-3-8B_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  merge_weights: ''
+
+# 60
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-31-8B_cc100'
+
+# 61
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-31-8B_cc100'
+
+# 62
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'spanish'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-31-8B_cc100'
+
+# 63
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-31-8B_cc100'
+
+# 64
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-31-8B_cc100'
+
+# 65
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'spanish'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_bn'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-31-8B_cc100'
+
+# 66
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'english'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-31-8B_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  merge_weights: ''
+
+# 67
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'german'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-31-8B_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  merge_weights: ''
+
+# 68
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'spanish'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-31-8B_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  merge_weights: ''
+
+# 69
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'english'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-31-8B_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  merge_weights: ''
+
+# 70
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'german'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-31-8B_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  merge_weights: ''
+
+# 71
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'spanish'
+  adapter_method: 'lora'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'icl_5_lora'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-31-8B_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  merge_weights: ''

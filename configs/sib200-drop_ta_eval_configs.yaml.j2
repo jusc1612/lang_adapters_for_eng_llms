@@ -1,0 +1,594 @@
+defaults: &default_values
+  hf_token: "{{ env('HF_TOKEN', None) }}"
+  cache_dir: "{{ env('CACHE_DIR', None) }}"
+  adapter_path: "{{ env('ADAPTER_PATH', None) }}"
+  eval_dir: "{{ env('EVAL_DIR', None) }}"
+  language_ratios: '1.0'
+  max_length: 4096
+  use_init: ''
+  task: 'question-answering'
+  task_dataset: 'MLQA-en'
+  task_data_split: 'sentence_split'
+  temperature: 0.6
+  top_p: 0.9
+  seeds: '42 43 44 45 46'
+  languages: 'english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian'
+  stop_strings: '### Sentence Topic .'
+  stop_at_first_upper: ''
+  eval_all: ''
+  latest_checkpoint: ''
+
+configs:
+
+# 0
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_bn_en_sib200'
+  ta_path_format: 'ta_sib200-drop'
+
+# 1
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_bn_de_sib200'
+  ta_path_format: 'ta_sib200-drop'
+
+# 2
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'spanish'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_bn_es_sib200'
+  ta_path_format: 'ta_sib200-drop'
+
+# 3
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'english'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_lora_en_sib200'
+  ta_path_format: 'ta_sib200-drop'
+  merge_weights: ''
+
+# 4
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'german'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_lora_de_sib200'
+  ta_path_format: 'ta_sib200-drop'
+  merge_weights: ''
+
+# 5
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'spanish'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_lora_es_sib200'
+  ta_path_format: 'ta_sib200-drop'
+  merge_weights: ''
+
+# 6
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_bn_en_sib200'
+  ta_path_format: 'ta_sib200-drop'
+
+# 7
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_bn_de_sib200'
+  ta_path_format: 'ta_sib200-drop'
+
+# 8
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'spanish'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_bn_es_sib200'
+  ta_path_format: 'ta_sib200-drop'
+
+# 9
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'english'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_lora_en_sib200'
+  ta_path_format: 'ta_sib200-drop'
+  merge_weights: ''
+
+# 10
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'german'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_lora_de_sib200'
+  ta_path_format: 'ta_sib200-drop'
+  merge_weights: ''
+
+# 11
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'spanish'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_lora_es_sib200'
+  ta_path_format: 'ta_sib200-drop'
+  merge_weights: ''
+
+# 12
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_bn_en_sib200'
+  ta_path_format: 'ta_sib200-drop'
+
+# 13
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_bn_de_sib200'
+  ta_path_format: 'ta_sib200-drop'
+
+# 14
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'spanish'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_bn_es_sib200'
+  ta_path_format: 'ta_sib200-drop'
+
+# 15
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'english'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_lora_en_sib200'
+  ta_path_format: 'ta_sib200-drop'
+  merge_weights: ''
+
+# 16
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'german'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_lora_de_sib200'
+  ta_path_format: 'ta_sib200-drop'
+  merge_weights: ''
+
+# 17
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'spanish'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_lora_es_sib200'
+  ta_path_format: 'ta_sib200-drop'
+  merge_weights: ''
+
+# 18
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_bn_cc100_en_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: '12500'
+  ta_path_format: 'ta_sib200-drop'
+
+# 19
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_bn_cc100_de_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: '12500'
+  ta_path_format: 'ta_sib200-drop'
+
+# 20
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'spanish'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_bn_cc100_es_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: '12500'
+  ta_path_format: 'ta_sib200-drop'
+
+# 21
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'english'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_lora_cc100_en_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  ta_path_format: 'ta_sib200-drop'
+  merge_weights: ''
+
+# 22
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'german'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_lora_cc100_de_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  ta_path_format: 'ta_sib200-drop'
+  merge_weights: ''
+
+# 23
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'spanish'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_lora_cc100_es_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  ta_path_format: 'ta_sib200-drop'
+  merge_weights: ''
+
+# 24
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_bn_cc100_en_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-3-8B_cc100'
+  lang_adapter_suffix: '12500'
+  ta_path_format: 'ta_sib200-drop'
+
+# 25
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_bn_cc100_de_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-3-8B_cc100'
+  lang_adapter_suffix: '12500'
+  ta_path_format: 'ta_sib200-drop'
+
+# 26
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'spanish'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_bn_cc100_es_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-3-8B_cc100'
+  lang_adapter_suffix: '12500'
+  ta_path_format: 'ta_sib200-drop'
+
+# 27
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'english'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_lora_cc100_en_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-3-8B_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  ta_path_format: 'ta_sib200-drop'
+  merge_weights: ''
+
+# 28
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'german'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_lora_cc100_de_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-3-8B_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  ta_path_format: 'ta_sib200-drop'
+  merge_weights: ''
+
+# 29
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'spanish'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_lora_cc100_es_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-3-8B_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  ta_path_format: 'ta_sib200-drop'
+  merge_weights: ''
+
+# 30
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_bn_cc100_en_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-31-8B_cc100'
+  ta_path_format: 'ta_sib200-drop'
+
+# 31
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_bn_cc100_de_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-31-8B_cc100'
+  ta_path_format: 'ta_sib200-drop'
+
+# 32
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'spanish'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_bn_cc100_es_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-31-8B_cc100'
+  ta_path_format: 'ta_sib200-drop'
+
+# 33
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'english'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_lora_cc100_en_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-31-8B_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  ta_path_format: 'ta_sib200-drop'
+  merge_weights: ''
+
+# 34
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'german'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_lora_cc100_de_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-31-8B_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  ta_path_format: 'ta_sib200-drop'
+  merge_weights: ''
+
+# 35
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'spanish'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_lora_cc100_es_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-31-8B_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  ta_path_format: 'ta_sib200-drop'
+  merge_weights: ''

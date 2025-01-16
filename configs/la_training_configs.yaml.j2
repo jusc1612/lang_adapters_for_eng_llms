@@ -1,0 +1,103 @@
+defaults: &default_values
+    model_name_or_path: "{{ env('MODEL_PATH', None) }}"
+    hf_token: "{{ env('HF_TOKEN', None) }}"
+    cache_dir: "{{ env('CACHE_DIR', None) }}"
+    per_device_train_batch_size: {{ env('BATCH_SIZE', None) }}
+    per_device_eval_batch_size: {{ env('BATCH_SIZE', None) }}
+    do_train: ''
+    do_eval: ''
+    overwrite_output_dir: ''
+    logging_steps: {{ env('LOG_EVAL_STEPS', None) }}
+    report_to: wandb
+    save_steps: {{ env('SAVE_STEPS', None) }}
+    eval_strategy: "steps"
+    preprocessing_num_workers: {{ env('NUM_CPUS_PER_GPU', None) }}
+    block_size: 1024
+    ddp_backend: 'nccl'
+    save_total_limit: 3
+    max_steps: {{ env('STEPS', None) }}
+    max_train_samples: {{ env('NUM_TRAIN_SAMPLES', None) }}
+    max_eval_samples: {{ env('NUM_EVAL_SAMPLES', None) }}
+
+configs:
+# 0: CulturaX
+-   <<: *default_values
+    output_dir: "{{ env('OUTPUT', None) }}"
+    dataset_name: 'uonlp/CulturaX'
+    max_data_files: 3
+    language_ratios: "{{ env('LANG_RATIO', None) }}"
+    languages: "{{ env('LANG', None) }}"
+    run_name: "{{ env('ADAPTER_NAME', None) }}"
+    adapter_config: "{{ env('ADAPTER_METHOD', None) }}"
+    reduction_factor: 16
+    train_adapter: ''
+    sampler: 'random'
+
+# 1: CC100
+-   <<: *default_values
+    output_dir: "{{ env('OUTPUT', None) }}"
+    train_file: "{{ env('LA_TRAIN_FILES_PATH', None) }}"
+    language_ratios: "{{ env('LANG_RATIO', None) }}"
+    languages: "{{ env('LANG', None) }}"
+    run_name: "{{ env('ADAPTER_NAME', None) }}"
+    adapter_config: "{{ env('ADAPTER_METHOD', None) }}"
+    reduction_factor: 16
+    train_adapter: ''
+    sampler: 'random'
+
+# 2: invertible adapters
+-   <<: *default_values
+    output_dir: "{{ env('OUTPUT', None) }}"
+    train_file: "{{ env('LA_TRAIN_FILES_PATH', None) }}"
+    language_ratios: "{{ env('LANG_RATIO', None) }}"
+    languages: "{{ env('LANG', None) }}"
+    run_name: "{{ env('ADAPTER_NAME', None) }}"
+    adapter_config: "{{ env('ADAPTER_METHOD', None) }}"
+    reduction_factor: 16
+    inv_adapter_reduction_factor: 4
+    tie_word_embeddings: ''
+    inv_adapter: 'nice'
+    train_adapter: ''
+    sampler: 'random'
+
+# 3: peft lora
+-   <<: *default_values
+    output_dir: "{{ env('OUTPUT', None) }}"
+    train_file: "{{ env('LA_TRAIN_FILES_PATH', None) }}"
+    language_ratios: "{{ env('LANG_RATIO', None) }}"
+    languages: "{{ env('LANG', None) }}"
+    run_name: "{{ env('ADAPTER_NAME', None) }}"
+    lora_alpha: "{{ env('LORA_ALPHA', None) }}" 
+    lora_rank: "{{ env('LORA_RANK', None) }}" 
+    adapter_dropout: 0.1 
+    peft_type: "{{ env('ADAPTER_METHOD', None) }}" 
+    task_type: 'CAUSAL_LM' 
+    attn_matrices: 'q_proj v_proj k_proj' 
+    sampler: 'random'
+
+# 4 prompt tuning
+-   <<: *default_values
+    output_dir: "{{ env('OUTPUT', None) }}"
+    train_file: "{{ env('LA_TRAIN_FILES_PATH', None) }}"
+    language_ratios: "{{ env('LANG_RATIO', None) }}"
+    languages: "{{ env('LANG', None) }}"
+    run_name: "{{ env('ADAPTER_NAME', None) }}"
+    peft_type: "{{ env('ADAPTER_METHOD', None) }}" 
+    task_type: 'CAUSAL_LM' 
+    num_virtual_tokens: 20
+    prompt_tuning_init: 'TEXT'
+    prompt_tuning_init_text: ''
+    sampler: 'random'
+
+# 5: CC100, different layers BN
+-   <<: *default_values
+    output_dir: "{{ env('OUTPUT', None) }}"
+    train_file: "{{ env('LA_TRAIN_FILES_PATH', None) }}"
+    language_ratios: "{{ env('LANG_RATIO', None) }}"
+    languages: "{{ env('LANG', None) }}"
+    run_name: "{{ env('ADAPTER_NAME', None) }}"
+    adapter_config: "{{ env('ADAPTER_METHOD', None) }}"
+    layers_ranges: "{{ env('LAYERS_RANGES', None) }}"
+    reduction_factor: 16
+    train_adapter: ''
+    sampler: 'random'

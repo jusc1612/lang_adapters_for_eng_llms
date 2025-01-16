@@ -1,0 +1,870 @@
+defaults: &default_values
+  hf_token: "{{ env('HF_TOKEN', None) }}"
+  cache_dir: "{{ env('CACHE_DIR', None) }}"
+  adapter_path: "{{ env('ADAPTER_PATH', None) }}"
+  language_ratios: '1.0'
+  max_length: 4096
+  use_init: ''
+  task: 'question-answering'
+  task_dataset: 'MLQA-en'
+  task_data_split: 'sentence_split'
+  temperature: 0.6
+  top_p: 0.9
+  seeds: '42'
+
+configs:
+# 0 PCA Llama 2 MLQA noLA
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  languages: 'english german swedish danish icelandic dutch afrikaans spanish portuguese catalan galician finnish hungarian'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  layers: '20 30 32' 
+  n_components: 2
+  num_samples: 500 
+  save_dir: "{{ env('SAVE_DIR', None) }}"
+  save_hidden_states: ''
+  #path_to_saved_hidden_states: 'hidden_states_pca/icl-5-bn_llama-2_aya_500_english_noLA_hidden_states.pkl'
+  visual_method: 'pca'
+  lang_specific_indices: 'aya_lang_specific_indices.npy'
+  n_shots: 5
+  xai_method: 'pca'
+
+# 1 PCA Llama 2 MLQA LA
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  languages: 'english german swedish danish icelandic dutch afrikaans spanish portuguese catalan galician finnish hungarian'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: '12500'
+  layers: '20 30 32' 
+  n_components: 2
+  num_samples: 500 
+  save_dir: "{{ env('SAVE_DIR', None) }}"
+  save_hidden_states: ''
+  #path_to_saved_hidden_states: 'hidden_states_pca/icl-5-bn_llama-2_aya_500_english_LA_hidden_states.pkl'
+  visual_method: 'pca'
+  lang_specific_indices: 'aya_lang_specific_indices.npy'
+  n_shots: 5
+  xai_method: 'pca' 
+
+# 2 PCA Llama 2 MLQA noLA de
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  languages: 'english german swedish danish icelandic dutch afrikaans spanish portuguese catalan galician finnish hungarian'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  layers: '20 30 32' 
+  n_components: 2
+  num_samples: 500 
+  save_dir: "{{ env('SAVE_DIR', None) }}"
+  save_hidden_states: ''
+  #path_to_saved_hidden_states: 'hidden_states_pca/icl-5-bn_llama-2_aya_500_german_noLA_hidden_states.pkl'
+  visual_method: 'pca'
+  lang_specific_indices: 'aya_lang_specific_indices.npy'
+  n_shots: 5
+  xai_method: 'pca'
+
+# 3 PCA Llama 2 MLQA LA de
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  languages: 'english german swedish danish icelandic dutch afrikaans spanish portuguese catalan galician finnish hungarian'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: '12500'
+  layers: '20 30 32' 
+  n_components: 2
+  num_samples: 500 
+  save_dir: "{{ env('SAVE_DIR', None) }}"
+  save_hidden_states: ''
+  #path_to_saved_hidden_states: 'hidden_states_pca/icl-5-bn_llama-2_aya_500_german_LA_hidden_states.pkl'
+  visual_method: 'pca'
+  lang_specific_indices: 'aya_lang_specific_indices.npy'
+  n_shots: 5
+  xai_method: 'pca'
+
+# 4 PCA Llama 2 MLQA noLA es
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  languages: 'english german swedish danish icelandic dutch afrikaans spanish portuguese catalan galician finnish hungarian'
+  source_lang: 'spanish'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  layers: '20 30 32' 
+  n_components: 2
+  num_samples: 500 
+  save_dir: "{{ env('SAVE_DIR', None) }}"
+  save_hidden_states: ''
+  #path_to_saved_hidden_states: 'hidden_states_pca/icl-5-bn_llama-2_aya_500_spanish_noLA_hidden_states.pkl'
+  visual_method: 'pca'
+  lang_specific_indices: 'aya_lang_specific_indices.npy'
+  n_shots: 5
+  xai_method: 'pca'
+
+# 5 PCA Llama 2 MLQA LA es
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  languages: 'english german swedish danish icelandic dutch afrikaans spanish portuguese catalan galician finnish hungarian'
+  source_lang: 'spanish'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: '12500'
+  layers: '20 30 32' 
+  n_components: 2
+  num_samples: 500 
+  save_dir: "{{ env('SAVE_DIR', None) }}"
+  save_hidden_states: ''
+  #path_to_saved_hidden_states: 'hidden_states_pca/icl-5-bn_llama-2_aya_500_spanish_LA_hidden_states.pkl'
+  visual_method: 'pca'
+  lang_specific_indices: 'aya_lang_specific_indices.npy'
+  n_shots: 5
+  xai_method: 'pca'
+
+# 6 PCA Llama 3.1 MLQA noLA en
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  languages: 'english german swedish danish icelandic dutch afrikaans spanish portuguese catalan galician finnish hungarian'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  layers: '20 30 32' 
+  n_components: 2
+  num_samples: 500 
+  save_dir: "{{ env('SAVE_DIR', None) }}"
+  save_hidden_states: ''
+  #path_to_saved_hidden_states: 'hidden_states_pca/icl-5-bn_llama-31_aya_500_english_noLA_hidden_states.pkl'
+  visual_method: 'pca'
+  lang_specific_indices: 'aya_lang_specific_indices.npy'
+  n_shots: 5
+  xai_method: 'pca'
+
+# 7 PCA Llama 3.1 MLQA LA en
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  languages: 'english german swedish danish icelandic dutch afrikaans spanish portuguese catalan galician finnish hungarian'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-31-8B_cc100'
+  layers: '20 30 32' 
+  n_components: 2
+  num_samples: 500 
+  save_dir: "{{ env('SAVE_DIR', None) }}"
+  save_hidden_states: ''
+  #path_to_saved_hidden_states: 'hidden_states_pca/icl-5-bn_llama-31_aya_500_english_LA_hidden_states.pkl'
+  visual_method: 'pca'
+  lang_specific_indices: 'aya_lang_specific_indices.npy'
+  n_shots: 5
+  xai_method: 'pca' 
+
+# 8 PCA Llama 3.1 MLQA noLA de 
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  languages: 'english german swedish danish icelandic dutch afrikaans spanish portuguese catalan galician finnish hungarian'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  layers: '20 30 32' 
+  n_components: 2
+  num_samples: 500 
+  save_dir: "{{ env('SAVE_DIR', None) }}"
+  save_hidden_states: ''
+  #path_to_saved_hidden_states: 'hidden_states_pca/icl-5-bn_llama-31_aya_500_german_noLA_hidden_states.pkl'
+  visual_method: 'pca'
+  lang_specific_indices: 'aya_lang_specific_indices.npy'
+  n_shots: 5
+  xai_method: 'pca'
+
+# 9 PCA Llama 3.1 MLQA LA de
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  languages: 'english german swedish danish icelandic dutch afrikaans spanish portuguese catalan galician finnish hungarian'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-31-8B_cc100'
+  layers: '20 30 32' 
+  n_components: 2
+  num_samples: 500 
+  save_dir: "{{ env('SAVE_DIR', None) }}"
+  save_hidden_states: ''
+  #path_to_saved_hidden_states: 'hidden_states_pca/icl-5-bn_llama-31_aya_500_german_LA_hidden_states.pkl'
+  visual_method: 'pca'
+  lang_specific_indices: 'aya_lang_specific_indices.npy'
+  n_shots: 5
+  xai_method: 'pca'
+
+# 10 PCA Llama 3.1 MLQA noLA es
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  languages: 'english german swedish danish icelandic dutch afrikaans spanish portuguese catalan galician finnish hungarian'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  layers: '20 30 32' 
+  n_components: 2
+  num_samples: 500 
+  save_dir: "{{ env('SAVE_DIR', None) }}"
+  save_hidden_states: ''
+  #path_to_saved_hidden_states: 'hidden_states_pca/icl-5-bn_llama-31_aya_500_spanish_noLA_hidden_states.pkl'
+  visual_method: 'pca'
+  lang_specific_indices: 'aya_lang_specific_indices.npy'
+  n_shots: 5
+  xai_method: 'pca'
+
+# 11 PCA Llama 3.1 MLQA LA es
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  languages: 'english german swedish danish icelandic dutch afrikaans spanish portuguese catalan galician finnish hungarian'
+  source_lang: 'spanish'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-31-8B_cc100'
+  layers: '20 30 32' 
+  n_components: 2
+  num_samples: 500 
+  save_dir: "{{ env('SAVE_DIR', None) }}"
+  save_hidden_states: ''
+  #path_to_saved_hidden_states: 'hidden_states_pca/icl-5-bn_llama-31_aya_500_spanish_LA_hidden_states.pkl'
+  visual_method: 'pca'
+  lang_specific_indices: 'aya_lang_specific_indices.npy'
+  n_shots: 5
+  xai_method: 'pca'
+
+# 12 PCA Llama 2 SIB-200 noLA
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  languages: 'english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+
+# 13 PCA Llama 2 SIB-200 LA
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  languages: 'english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  stop_at_first_upper: ''
+  max_new_tokens: 20
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: '12500'
+
+# 14 Logit Lens Llama 2 MLQA noLA en
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  #languages: 'english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian'
+  #languages: 'english german icelandic swedish dutch'
+  languages: 'icelandic'
+  generate_output: ''
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  #lang_specific_indices: 'aya_lang_specific_indices.npy'
+  n_shots: 5
+  xai_method: 'logit_lens'
+  layer_stride: 2
+  statistic: 'entropy' 
+  token_range: 10
+  target_index: 1653
+  #topk: 10
+  #save_plots: ''
+  save_dir: "{{ env('SAVE_DIR', None) }}" 
+
+# 15 Logit Lens Llama 2 MLQA LA en
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  #languages: 'english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian'
+  #languages: 'english german icelandic swedish dutch'
+  languages: 'icelandic'
+  generate_output: ''
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: '12500'
+  #lang_specific_indices: 'aya_lang_specific_indices.npy'
+  n_shots: 5
+  xai_method: 'logit_lens'
+  layer_stride: 2
+  statistic: 'entropy' 
+  token_range: 10
+  target_index: 1653
+  #topk: 10
+  #save_plots: ''
+  save_dir: "{{ env('SAVE_DIR', None) }}"
+
+# 16 Logit Lens Llama 2 MLQA noLA de
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  #languages: 'english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian'
+  #languages: 'english german icelandic swedish dutch'
+  languages: 'icelandic'
+  generate_output: ''
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  #lang_specific_indices: 'aya_lang_specific_indices.npy'
+  n_shots: 5
+  xai_method: 'logit_lens'
+  layer_stride: 2
+  statistic: 'entropy' 
+  token_range: 10
+  target_index: 1653
+  #topk: 10
+  #save_plots: ''
+  save_dir: "{{ env('SAVE_DIR', None) }}" 
+
+# 17 Logit Lens Llama 2 MLQA LA de
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  #languages: 'english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian'
+  #languages: 'english german icelandic swedish dutch'
+  languages: 'icelandic'
+  generate_output: ''
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: '12500'
+  #lang_specific_indices: 'aya_lang_specific_indices.npy'
+  n_shots: 5
+  xai_method: 'logit_lens'
+  layer_stride: 2
+  statistic: 'entropy' 
+  token_range: 10
+  target_index: 1653
+  #topk: 10
+  #save_plots: ''
+  save_dir: "{{ env('SAVE_DIR', None) }}"
+
+# 18 Logit Lens Llama 31 MLQA noLA en
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  #languages: 'english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian'
+  #languages: 'english german icelandic swedish dutch'
+  languages: 'icelandic'
+  generate_output: ''
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  #lang_specific_indices: 'aya_lang_specific_indices.npy'
+  n_shots: 5
+  xai_method: 'logit_lens'
+  layer_stride: 2
+  statistic: 'entropy' 
+  token_range: 10
+  target_index: 1653
+  #topk: 10
+  #save_plots: ''
+  save_dir: "{{ env('SAVE_DIR', None) }}" 
+
+# 19 Logit Lens Llama 31 MLQA LA en
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  #languages: 'english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian'
+  #languages: 'english german icelandic swedish dutch'
+  languages: 'icelandic'
+  generate_output: ''
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-3-8B_cc100'
+  lang_adapter_suffix: '12500'
+  #lang_specific_indices: 'aya_lang_specific_indices.npy'
+  n_shots: 5
+  xai_method: 'logit_lens'
+  layer_stride: 2
+  statistic: 'entropy' 
+  token_range: 10
+  target_index: 1653
+  #topk: 10
+  #save_plots: ''
+  save_dir: "{{ env('SAVE_DIR', None) }}"
+
+# 20 Logit Lens Llama 31 MLQA noLA de
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  #languages: 'english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian'
+  #languages: 'english german icelandic swedish dutch'
+  languages: 'icelandic'
+  generate_output: ''
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  #lang_specific_indices: 'aya_lang_specific_indices.npy'
+  n_shots: 5
+  xai_method: 'logit_lens'
+  layer_stride: 2
+  statistic: 'entropy' 
+  token_range: 10
+  target_index: 1653
+  #topk: 10
+  #save_plots: ''
+  save_dir: "{{ env('SAVE_DIR', None) }}" 
+
+# 21 Logit Lens Llama 31 MLQA LA de
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  #languages: 'english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian'
+  #languages: 'english german icelandic swedish dutch'
+  languages: 'icelandic'
+  generate_output: ''
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 120
+  instr_keys: 'chat'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-3-8B_cc100'
+  lang_adapter_suffix: '12500'
+  #lang_specific_indices: 'aya_lang_specific_indices.npy'
+  n_shots: 5
+  xai_method: 'logit_lens'
+  layer_stride: 2
+  statistic: 'entropy' 
+  token_range: 10
+  target_index: 1653
+  #topk: 10
+  #save_plots: ''
+  save_dir: "{{ env('SAVE_DIR', None) }}"
+
+# 22 Logit Lens Llama 2 SIB-200 noLA en
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  languages: 'english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  #stop_at_first_upper: ''
+  max_new_tokens: 20
+  #lang_specific_indices: 'aya_lang_specific_indices.npy'
+  n_shots: 10
+  xai_method: 'logit_lens'
+  layer_stride: 2
+  statistic: 'entropy' 
+  token_range: 10
+  inp_passage: 'Bush_told'
+  #topk: 10
+  #save_plots: ''
+  save_dir: "{{ env('SAVE_DIR', None) }}"
+
+# 23 Logit Lens Llama 2 SIB-200 LA en
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  languages: 'english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  #stop_at_first_upper: ''
+  max_new_tokens: 20
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: '12500'
+  #lang_specific_indices: 'aya_lang_specific_indices.npy'
+  n_shots: 10
+  xai_method: 'logit_lens'
+  layer_stride: 2
+  statistic: 'entropy' 
+  token_range: 10
+  inp_passage: 'Bush_told'
+  #topk: 10
+  #save_plots: ''
+  save_dir: "{{ env('SAVE_DIR', None) }}"
+
+# 24 Logit Lens Llama 31 SIB-200 noLA en
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  languages: 'english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  #stop_at_first_upper: ''
+  max_new_tokens: 20
+  #lang_specific_indices: 'aya_lang_specific_indices.npy'
+  n_shots: 5
+  xai_method: 'logit_lens'
+  layer_stride: 2
+  statistic: 'entropy' 
+  token_range: 10
+  inp_passage: 'Bush_told'
+  #topk: 10
+  #save_plots: ''
+  save_dir: "{{ env('SAVE_DIR', None) }}"
+
+# 25 Logit Lens Llama 3 SIB-200 LA en
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  languages: 'english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  #stop_at_first_upper: ''
+  max_new_tokens: 20
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-3-8B_cc100'
+  lang_adapter_suffix: '12500'
+  #lang_specific_indices: 'aya_lang_specific_indices.npy'
+  n_shots: 5
+  xai_method: 'logit_lens'
+  layer_stride: 2
+  statistic: 'entropy' 
+  token_range: 10
+  inp_passage: 'Bush_told'
+  #topk: 10
+  #save_plots: ''
+  save_dir: "{{ env('SAVE_DIR', None) }}"
+
+# 26 Logit Lens Llama 2 SIB-200 noLA de
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  languages: 'english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  #stop_at_first_upper: ''
+  max_new_tokens: 20
+  #lang_specific_indices: 'aya_lang_specific_indices.npy'
+  n_shots: 5
+  xai_method: 'logit_lens'
+  layer_stride: 2
+  statistic: 'entropy' 
+  token_range: 10
+  inp_passage: 'Bush_told'
+  #topk: 10
+  #save_plots: ''
+  save_dir: "{{ env('SAVE_DIR', None) }}"
+
+# 27 Logit Lens Llama 2 SIB-200 LA de
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  languages: 'english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  #stop_at_first_upper: ''
+  max_new_tokens: 20
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: '12500'
+  #lang_specific_indices: 'aya_lang_specific_indices.npy'
+  n_shots: 5
+  xai_method: 'logit_lens'
+  layer_stride: 2
+  statistic: 'entropy' 
+  token_range: 10
+  inp_passage: 'Bush_told'
+  #topk: 10
+  #save_plots: ''
+  save_dir: "{{ env('SAVE_DIR', None) }}"
+
+# 28 Logit Lens Llama 31 SIB-200 noLA de
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  languages: 'english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  #stop_at_first_upper: ''
+  max_new_tokens: 20
+  #lang_specific_indices: 'aya_lang_specific_indices.npy'
+  n_shots: 5
+  xai_method: 'logit_lens'
+  layer_stride: 2
+  statistic: 'entropy' 
+  token_range: 10
+  inp_passage: 'Bush_told'
+  #topk: 10
+  #save_plots: ''
+  save_dir: "{{ env('SAVE_DIR', None) }}"
+
+# 29 Logit Lens Llama 3 SIB-200 LA de
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  languages: 'english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  format_prompt: ''
+  source_prompt: 'english'
+  no_instr: ''
+  add_eng_instr: ''
+  add_period: ''
+  stop_strings: '### Sentence Topic .'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  #stop_at_first_upper: ''
+  max_new_tokens: 20
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-3-8B_cc100'
+  lang_adapter_suffix: '12500'
+  #lang_specific_indices: 'aya_lang_specific_indices.npy'
+  n_shots: 5
+  xai_method: 'logit_lens'
+  layer_stride: 2
+  statistic: 'entropy' 
+  token_range: 10
+  inp_passage: 'Bush_told'
+  #topk: 10
+  #save_plots: ''
+  save_dir: "{{ env('SAVE_DIR', None) }}"

@@ -1,0 +1,1362 @@
+defaults: &default_values
+  hf_token: "{{ env('HF_TOKEN', None) }}"
+  cache_dir: "{{ env('CACHE_DIR', None) }}"
+  adapter_path: "{{ env('ADAPTER_PATH', None) }}"
+  eval_dir: "{{ env('EVAL_DIR', None) }}"
+  language_ratios: '1.0'
+  max_length: 4096
+  use_init: ''
+  task: 'question-answering'
+  task_dataset: 'MLQA-en'
+  task_data_split: 'sentence_split'
+  temperature: 0.6
+  top_p: 0.9
+  seeds: '42'
+  eval_all: ''
+  n_shots: 5
+
+configs:
+  # 0: Prompt Tuning
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'english'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    dataset: 'CohereForAI/aya_collection_language_split'
+    max_new_tokens: 120
+    instr_keys: 'chat'
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+    lang_adapter_suffix: 'pt'
+    eval_prefix: 'icl_5_pt'
+    adapter_method: 'pt'
+
+  # 1
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'german'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    dataset: 'CohereForAI/aya_collection_language_split'
+    max_new_tokens: 120
+    instr_keys: 'chat'
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+    lang_adapter_suffix: 'pt'
+    eval_prefix: 'icl_5_pt'
+    adapter_method: 'pt'
+
+  # 2
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'spanish'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    dataset: 'CohereForAI/aya_collection_language_split'
+    max_new_tokens: 120
+    instr_keys: 'chat'
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+    lang_adapter_suffix: 'pt'
+    eval_prefix: 'icl_5_pt'
+    adapter_method: 'pt'
+
+  # 3
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'english'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    dataset: 'Davlan/sib200'
+    stop_at_first_upper: ''
+    latest_checkpoint: ''
+    max_new_tokens: 20
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+    lang_adapter_suffix: 'pt'
+    eval_prefix: 'icl_5_pt'
+    adapter_method: 'pt'
+
+  # 4
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'german'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    dataset: 'Davlan/sib200'
+    stop_at_first_upper: ''
+    latest_checkpoint: ''
+    max_new_tokens: 20
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+    lang_adapter_suffix: 'pt'
+    eval_prefix: 'icl_5_pt'
+    adapter_method: 'pt'
+
+  # 5
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'spanish'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    dataset: 'Davlan/sib200'
+    stop_at_first_upper: ''
+    latest_checkpoint: ''
+    max_new_tokens: 20
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+    lang_adapter_suffix: 'pt'
+    eval_prefix: 'icl_5_pt'
+    adapter_method: 'pt'
+
+  # 0: final 8
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'english'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    dataset: 'CohereForAI/aya_collection_language_split'
+    max_new_tokens: 120
+    instr_keys: 'chat'
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+    lang_adapter_suffix: 'final-8'
+    eval_prefix: 'icl_5_final-8'
+    adapter_method: 'seq_bn'
+
+  # 1
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'german'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    dataset: 'CohereForAI/aya_collection_language_split'
+    max_new_tokens: 120
+    instr_keys: 'chat'
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+    lang_adapter_suffix: 'final-8'
+    eval_prefix: 'icl_5_final-8'
+    adapter_method: 'seq_bn'
+
+  # 2
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'spanish'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    dataset: 'CohereForAI/aya_collection_language_split'
+    max_new_tokens: 120
+    instr_keys: 'chat'
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+    lang_adapter_suffix: 'final-8'
+    eval_prefix: 'icl_5_final-8'
+    adapter_method: 'seq_bn'
+
+  # 3
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'english'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    dataset: 'Davlan/sib200'
+    stop_at_first_upper: ''
+    latest_checkpoint: ''
+    max_new_tokens: 20
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+    lang_adapter_suffix: 'final-8'
+    eval_prefix: 'icl_5_final-8'
+    adapter_method: 'seq_bn'
+
+  # 4
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'german'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    dataset: 'Davlan/sib200'
+    stop_at_first_upper: ''
+    latest_checkpoint: ''
+    max_new_tokens: 20
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+    lang_adapter_suffix: 'final-8'
+    eval_prefix: 'icl_5_final-8'
+    adapter_method: 'seq_bn'
+
+  # 5
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'spanish'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    dataset: 'Davlan/sib200'
+    stop_at_first_upper: ''
+    latest_checkpoint: ''
+    max_new_tokens: 20
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+    lang_adapter_suffix: 'final-8'
+    eval_prefix: 'icl_5_final-8'
+    adapter_method: 'seq_bn'
+
+  # 0: Invertible Adapters
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'english'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    adapter_method: 'seq_bn'
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    eval_prefix: 'icl_5_inv-bn'
+    dataset: 'CohereForAI/aya_collection_language_split'
+    max_new_tokens: 120
+    instr_keys: 'chat'
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+    lang_adapter_suffix: 'inv-4'
+
+  # 0
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'german'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    adapter_method: 'seq_bn'
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    eval_prefix: 'icl_5_inv-bn'
+    dataset: 'CohereForAI/aya_collection_language_split'
+    max_new_tokens: 120
+    instr_keys: 'chat'
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+    lang_adapter_suffix: 'inv-4'
+
+  # 0
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'spanish'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    adapter_method: 'seq_bn'
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    eval_prefix: 'icl_5_inv-bn'
+    dataset: 'CohereForAI/aya_collection_language_split'
+    max_new_tokens: 120
+    instr_keys: 'chat'
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+    lang_adapter_suffix: 'inv-4'
+
+  # 1
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'english'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    adapter_method: 'seq_bn'
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    eval_prefix: 'icl_5_inv-bn'
+    dataset: 'Davlan/sib200'
+    stop_at_first_upper: ''
+    latest_checkpoint: ''
+    max_new_tokens: 20
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+    lang_adapter_suffix: 'inv-4'
+
+  # 1
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'german'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    adapter_method: 'seq_bn'
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    eval_prefix: 'icl_5_inv-bn'
+    dataset: 'Davlan/sib200'
+    stop_at_first_upper: ''
+    latest_checkpoint: ''
+    max_new_tokens: 20
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+    lang_adapter_suffix: 'inv-4'
+
+  # 1
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'spanish'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    adapter_method: 'seq_bn'
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    eval_prefix: 'icl_5_inv-bn'
+    dataset: 'Davlan/sib200'
+    stop_at_first_upper: ''
+    latest_checkpoint: ''
+    max_new_tokens: 20
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+    lang_adapter_suffix: 'inv-4'
+
+  # 18: CulturaX
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'english'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    adapter_method: 'seq_bn'
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    eval_prefix: 'icl_5_cX-bn'
+    dataset: 'CohereForAI/aya_collection_language_split'
+    max_new_tokens: 120
+    instr_keys: 'chat'
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cX'
+
+  # 19
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'german'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    adapter_method: 'seq_bn'
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    eval_prefix: 'icl_5_cX-bn'
+    dataset: 'CohereForAI/aya_collection_language_split'
+    max_new_tokens: 120
+    instr_keys: 'chat'
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cX'
+
+  # 20
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'spanish'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    adapter_method: 'seq_bn'
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    eval_prefix: 'icl_5_cX-bn'
+    dataset: 'CohereForAI/aya_collection_language_split'
+    max_new_tokens: 120
+    instr_keys: 'chat'
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cX'
+
+  # 21
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'english'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    adapter_method: 'seq_bn'
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    eval_prefix: 'icl_5_cX-bn'
+    dataset: 'Davlan/sib200'
+    stop_at_first_upper: ''
+    latest_checkpoint: ''
+    max_new_tokens: 20
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cX'
+
+  # 22
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'german'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    adapter_method: 'seq_bn'
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    eval_prefix: 'icl_5_cX-bn'
+    dataset: 'Davlan/sib200'
+    stop_at_first_upper: ''
+    latest_checkpoint: ''
+    max_new_tokens: 20
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cX'
+
+  # 23
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'spanish'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    adapter_method: 'seq_bn'
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    eval_prefix: 'icl_5_cX-bn'
+    dataset: 'Davlan/sib200'
+    stop_at_first_upper: ''
+    latest_checkpoint: ''
+    max_new_tokens: 20
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cX'
+
+  # 24: 400k LA samples
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'english'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    adapter_method: 'seq_bn'
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    eval_prefix: 'icl_5_400k-bn'
+    dataset: 'CohereForAI/aya_collection_language_split'
+    max_new_tokens: 120
+    instr_keys: 'chat'
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+    lang_adapter_suffix: '400k'
+
+  # 25
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'german'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    adapter_method: 'seq_bn'
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    eval_prefix: 'icl_5_400k-bn'
+    dataset: 'CohereForAI/aya_collection_language_split'
+    max_new_tokens: 120
+    instr_keys: 'chat'
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+    lang_adapter_suffix: '400k'
+
+  # 26
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'spanish'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    adapter_method: 'seq_bn'
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    eval_prefix: 'icl_5_400k-bn'
+    dataset: 'CohereForAI/aya_collection_language_split'
+    max_new_tokens: 120
+    instr_keys: 'chat'
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+    lang_adapter_suffix: '400k'
+
+  # 27
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'english'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    adapter_method: 'seq_bn'
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    eval_prefix: 'icl_5_400k-bn'
+    dataset: 'Davlan/sib200'
+    stop_at_first_upper: ''
+    latest_checkpoint: ''
+    max_new_tokens: 20
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+    lang_adapter_suffix: '400k'
+
+  # 28
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'german'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    adapter_method: 'seq_bn'
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    eval_prefix: 'icl_5_400k-bn'
+    dataset: 'Davlan/sib200'
+    stop_at_first_upper: ''
+    latest_checkpoint: ''
+    max_new_tokens: 20
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+    lang_adapter_suffix: '400k'
+
+  # 29
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'spanish'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    adapter_method: 'seq_bn'
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    eval_prefix: 'icl_5_400k-bn'
+    dataset: 'Davlan/sib200'
+    stop_at_first_upper: ''
+    latest_checkpoint: ''
+    max_new_tokens: 20
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+    lang_adapter_suffix: '400k'
+
+  # 30: reduction_factor=32
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'english'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    adapter_method: 'seq_bn'
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    eval_prefix: 'icl_5_red-32-bn'
+    dataset: 'CohereForAI/aya_collection_language_split'
+    max_new_tokens: 120
+    instr_keys: 'chat'
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+
+  # 31
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'german'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    adapter_method: 'seq_bn'
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    eval_prefix: 'icl_5_red-32-bn'
+    dataset: 'CohereForAI/aya_collection_language_split'
+    max_new_tokens: 120
+    instr_keys: 'chat'
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+
+  # 32
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'spanish'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    adapter_method: 'seq_bn'
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    eval_prefix: 'icl_5_red-32-bn'
+    dataset: 'CohereForAI/aya_collection_language_split'
+    max_new_tokens: 120
+    instr_keys: 'chat'
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+
+  # 33
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'english'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    adapter_method: 'seq_bn'
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    eval_prefix: 'icl_5_red-32-bn'
+    dataset: 'Davlan/sib200'
+    stop_at_first_upper: ''
+    latest_checkpoint: ''
+    max_new_tokens: 20
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+
+  # 34
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'german'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    adapter_method: 'seq_bn'
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    eval_prefix: 'icl_5_red-32-bn'
+    dataset: 'Davlan/sib200'
+    stop_at_first_upper: ''
+    latest_checkpoint: ''
+    max_new_tokens: 20
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+
+  # 35
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'spanish'
+    languages: "english german spanish icelandic afrikaans galician finnish swedish"
+    adapter_method: 'seq_bn'
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    eval_prefix: 'icl_5_red-32-bn'
+    dataset: 'Davlan/sib200'
+    stop_at_first_upper: ''
+    latest_checkpoint: ''
+    max_new_tokens: 20
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+
+  # 36: multilingual LAs
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'german'
+    languages: "german swedish danish icelandic"
+    adapter_method: 'seq_bn'
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    eval_prefix: 'icl_5_red-8-bn_de-sv-da-is'
+    dataset: 'CohereForAI/aya_collection_language_split'
+    max_new_tokens: 120
+    instr_keys: 'chat'
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+    lang_adapter_suffix: 'red-8'
+    multiling: ''
+
+  # 36
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'german'
+    languages: "german dutch afrikaans"
+    adapter_method: 'seq_bn'
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    eval_prefix: 'icl_5_red-8-bn_de-nl-af'
+    dataset: 'CohereForAI/aya_collection_language_split'
+    max_new_tokens: 120
+    instr_keys: 'chat'
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+    lang_adapter_suffix: 'red-8'
+    multiling: ''
+  
+    # 36
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'spanish'
+    languages: "spanish portuguese catalan galician"
+    adapter_method: 'seq_bn'
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    eval_prefix: 'icl_5_red-8-bn_es-pt-ca-gl'
+    dataset: 'CohereForAI/aya_collection_language_split'
+    max_new_tokens: 120
+    instr_keys: 'chat'
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+    lang_adapter_suffix: 'red-8'
+    multiling: ''
+  
+    # 36
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'english'
+    languages: "english finnish hungarian"
+    adapter_method: 'seq_bn'
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    eval_prefix: 'icl_5_red-8-bn_en-fi-hu'
+    dataset: 'CohereForAI/aya_collection_language_split'
+    max_new_tokens: 120
+    instr_keys: 'chat'
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+    lang_adapter_suffix: 'red-8'
+    multiling: ''
+
+  # 37
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'german'
+    languages: "german swedish danish icelandic"
+    adapter_method: 'seq_bn'
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    eval_prefix: 'icl_5_red-8-bn_de-sv-da-is'
+    dataset: 'Davlan/sib200'
+    stop_at_first_upper: ''
+    latest_checkpoint: ''
+    max_new_tokens: 20
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+    lang_adapter_suffix: 'red-8'
+    multiling: ''
+
+  # 37
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'german'
+    languages: "german dutch afrikaans"
+    adapter_method: 'seq_bn'
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    eval_prefix: 'icl_5_red-8-bn_de-nl-af'
+    dataset: 'Davlan/sib200'
+    stop_at_first_upper: ''
+    latest_checkpoint: ''
+    max_new_tokens: 20
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+    lang_adapter_suffix: 'red-8'
+    multiling: ''
+  
+    # 37
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'spanish'
+    languages: "spanish portuguese catalan galician"
+    adapter_method: 'seq_bn'
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    eval_prefix: 'icl_5_red-8-bn_es-pt-ca-gl'
+    dataset: 'Davlan/sib200'
+    stop_at_first_upper: ''
+    latest_checkpoint: ''
+    max_new_tokens: 20
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+    lang_adapter_suffix: 'red-8'
+    multiling: ''
+  
+    # 37
+  - <<: *default_values
+    model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+    source_lang: 'english'
+    languages: "english finnish hungarian"
+    adapter_method: 'seq_bn'
+    no_instr: ''
+    add_eng_instr: ''
+    add_period: ''
+    stop_strings: '### Sentence Topic .'
+    eval_prefix: 'icl_5_red-8-bn_en-fi-hu'
+    dataset: 'Davlan/sib200'
+    stop_at_first_upper: ''
+    latest_checkpoint: ''
+    max_new_tokens: 20
+    format_prompt: ''
+    source_prompt: 'english'
+    use_la: ''
+    lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+    lang_adapter_suffix: 'red-8'
+    multiling: ''
+
+  # 0 llama2 bn la mlqa + period (to be checked for llama31?)
+  - <<: *default_values
+    model_name_or_path: "meta-llama/Llama-2-7b-hf"
+    dataset: "CohereForAI/aya_collection_language_split"
+    max_new_tokens: 120 
+    eval_prefix: "_check_w_period_ICL_5_bn"
+    source_lang: "english"
+    languages: "english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian"
+    adapter_method: "seq_bn"
+    lang_adapter_prefix: "Llama-2-7b-hf_cc100"
+    lang_adapter_suffix: "12500"
+    use_la: ""
+    instr_keys: "chat"
+    no_instr: ""
+    add_eng_instr: ""
+    add_period: ""
+    format_prompt: ""
+    source_prompt: ""
+    stop_strings: "### Sentence Topic ."
+    eval_all: ""
+
+  # 1 llama2 bn nola mlqa + period
+  - <<: *default_values
+    model_name_or_path: "meta-llama/Llama-2-7b-hf"
+    dataset: "CohereForAI/aya_collection_language_split"
+    max_new_tokens: 120
+    eval_prefix: "_check_w_period_ICL_5_bn"
+    source_lang: "english"
+    languages: "english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian"
+    adapter_method: "seq_bn"
+    instr_keys: "chat"
+    no_instr: ""
+    add_eng_instr: ""
+    add_period: ""
+    format_prompt: ""
+    source_prompt: ""
+    stop_strings: "### Sentence Topic ."
+    eval_all: ""
+
+  # 2 llama2 bn la mlqa - period
+  - <<: *default_values
+    model_name_or_path: "meta-llama/Llama-2-7b-hf"
+    dataset: "CohereForAI/aya_collection_language_split"
+    max_new_tokens: 120
+    eval_prefix: "_check_wo_period_ICL_5_bn"
+    source_lang: "english"
+    languages: "english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian"
+    adapter_method: "seq_bn"
+    lang_adapter_prefix: "Llama-2-7b-hf_cc100"
+    lang_adapter_suffix: "12500"
+    use_la: ""
+    instr_keys: "chat"
+    no_instr: ""
+    add_eng_instr: ""
+    format_prompt: ""
+    source_prompt: ""
+    stop_strings: "### Sentence Topic ."
+    eval_all: ""
+
+  # 3 llama2 bn nola mlqa - period
+  - <<: *default_values
+    model_name_or_path: "meta-llama/Llama-2-7b-hf"
+    dataset: "CohereForAI/aya_collection_language_split"
+    max_new_tokens: 120
+    eval_prefix: "_check_wo_period_ICL_5_bn"
+    source_lang: "english"
+    languages: "english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian"
+    adapter_method: "seq_bn"
+    instr_keys: "chat"
+    no_instr: ""
+    add_eng_instr: ""
+    format_prompt: ""
+    source_prompt: ""
+    stop_strings: "### Sentence Topic ."
+    eval_all: ""
+
+  # 4 llama2 bn la sib200 + stop_at_first_upper - period
+  - <<: *default_values
+    model_name_or_path: "meta-llama/Llama-2-7b-hf"
+    dataset: "Davlan/sib200"
+    max_new_tokens: 20
+    eval_prefix: "_check_wo_period_ICL_5_bn"
+    source_lang: "english"
+    languages: "english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian"
+    adapter_method: "seq_bn"
+    lang_adapter_prefix: "Llama-2-7b-hf_cc100"
+    lang_adapter_suffix: "12500"
+    use_la: ""
+    no_instr: ""
+    add_eng_instr: ""
+    format_prompt: ""
+    source_prompt: ""
+    stop_strings: "### Sentence Topic"
+    eval_all: ""
+    stop_at_first_upper: ""
+
+  # 5 llama2 bn nola sib200 + stop_at_first_upper - period
+  - <<: *default_values
+    model_name_or_path: "meta-llama/Llama-2-7b-hf"
+    dataset: "Davlan/sib200"
+    max_new_tokens: 20
+    eval_prefix: "_check_wo_period_ICL_5_bn"
+    source_lang: "english"
+    languages: "english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian"
+    adapter_method: "seq_bn"
+    no_instr: ""
+    add_eng_instr: ""
+    format_prompt: ""
+    source_prompt: ""
+    stop_strings: "### Sentence Topic"
+    eval_all: ""
+    stop_at_first_upper: ""
+
+  # 6 llama2 bn la sib200 + stop_at_first_upper + period
+  - <<: *default_values
+    model_name_or_path: "meta-llama/Llama-2-7b-hf"
+    dataset: "Davlan/sib200"
+    max_new_tokens: 20
+    eval_prefix: "_check_w_period_ICL_5_bn"
+    source_lang: "english"
+    languages: "english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian"
+    adapter_method: "seq_bn"
+    lang_adapter_prefix: "Llama-2-7b-hf_cc100"
+    lang_adapter_suffix: "12500"
+    use_la: ""
+    no_instr: ""
+    add_eng_instr: ""
+    format_prompt: ""
+    source_prompt: ""
+    add_period: ""
+    stop_strings: "### Sentence Topic ."
+    eval_all: ""
+
+  # 7 llama2 bn nola sib200 + stop_at_first_upper + period
+  - <<: *default_values
+    model_name_or_path: "meta-llama/Llama-2-7b-hf"
+    dataset: "Davlan/sib200"
+    max_new_tokens: 20
+    eval_prefix: "_check_w_period_ICL_5_bn"
+    source_lang: "english"
+    languages: "english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian"
+    adapter_method: "seq_bn"
+    no_instr: ""
+    add_eng_instr: ""
+    format_prompt: ""
+    source_prompt: ""
+    add_period: ""
+    stop_strings: "### Sentence Topic ."
+    eval_all: ""
+    stop_at_first_upper: ""
+
+  # 8 llama2 bn la mlqa + period (to be checked for llama31?)
+  - <<: *default_values
+    model_name_or_path: "meta-llama/Meta-Llama-3.1-8B"
+    dataset: "CohereForAI/aya_collection_language_split"
+    max_new_tokens: 120 
+    eval_prefix: "_check_w_period_ICL_5_bn"
+    source_lang: "english"
+    languages: "english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian"
+    adapter_method: "seq_bn"
+    lang_adapter_prefix: "Meta-Llama-31-8B_cc100"
+    use_la: ""
+    instr_keys: "chat"
+    no_instr: ""
+    add_eng_instr: ""
+    add_period: ""
+    format_prompt: ""
+    source_prompt: ""
+    stop_strings: "### Sentence Topic ."
+    eval_all: ""
+
+  # 9 llama2 bn nola mlqa + period
+  - <<: *default_values
+    model_name_or_path: "meta-llama/Meta-Llama-3.1-8B"
+    dataset: "CohereForAI/aya_collection_language_split"
+    max_new_tokens: 120
+    eval_prefix: "_check_w_period_ICL_5_bn"
+    source_lang: "english"
+    languages: "english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian"
+    adapter_method: "seq_bn"
+    instr_keys: "chat"
+    no_instr: ""
+    add_eng_instr: ""
+    add_period: ""
+    format_prompt: ""
+    source_prompt: ""
+    stop_strings: "### Sentence Topic ."
+    eval_all: ""
+
+  # 10 llama2 bn la mlqa - period
+  - <<: *default_values
+    model_name_or_path: "meta-llama/Meta-Llama-3.1-8B"
+    dataset: "CohereForAI/aya_collection_language_split"
+    max_new_tokens: 120
+    eval_prefix: "_check_wo_period_ICL_5_bn"
+    source_lang: "english"
+    languages: "english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian"
+    adapter_method: "seq_bn"
+    lang_adapter_prefix: "Meta-Llama-31-8B_cc100"
+    use_la: ""
+    instr_keys: "chat"
+    no_instr: ""
+    add_eng_instr: ""
+    format_prompt: ""
+    source_prompt: ""
+    stop_strings: "### Sentence Topic"
+    eval_all: ""
+
+  # 11 llama2 bn nola mlqa - period
+  - <<: *default_values
+    model_name_or_path: "meta-llama/Meta-Llama-3.1-8B"
+    dataset: "CohereForAI/aya_collection_language_split"
+    max_new_tokens: 120
+    eval_prefix: "_check_wo_period_ICL_5_bn"
+    source_lang: "english"
+    languages: "english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian"
+    adapter_method: "seq_bn"
+    instr_keys: "chat"
+    no_instr: ""
+    add_eng_instr: ""
+    format_prompt: ""
+    source_prompt: ""
+    stop_strings: "### Sentence Topic"
+    eval_all: ""
+
+  # 12 llama2 bn la sib200 - stop_at_first_upper + period
+  - <<: *default_values
+    model_name_or_path: "meta-llama/Meta-Llama-3.1-8B"
+    dataset: "Davlan/sib200"
+    max_new_tokens: 20
+    eval_prefix: "_check_w_period_ICL_5_bn"
+    source_lang: "english"
+    languages: "english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian"
+    adapter_method: "seq_bn"
+    lang_adapter_prefix: "Meta-Llama-31-8B_cc100"
+    use_la: ""
+    no_instr: ""
+    add_eng_instr: ""
+    format_prompt: ""
+    source_prompt: ""
+    add_period: ""
+    stop_strings: "### Sentence Topic ."
+    eval_all: ""
+    stop_at_first_upper: ""
+
+  # 13 llama2 bn nola sib200 - stop_at_first_upper + period
+  - <<: *default_values
+    model_name_or_path: "meta-llama/Meta-Llama-3.1-8B"
+    dataset: "Davlan/sib200"
+    max_new_tokens: 20
+    eval_prefix: "_check_w_period_ICL_5_bn"
+    source_lang: "english"
+    languages: "english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian"
+    adapter_method: "seq_bn"
+    no_instr: ""
+    add_eng_instr: ""
+    format_prompt: ""
+    source_prompt: ""
+    add_period: ""
+    stop_strings: "### Sentence Topic ."
+    eval_all: ""
+
+  # 14 llama2 bn la sib200 + stop_at_first_upper - period
+  - <<: *default_values
+    model_name_or_path: "meta-llama/Meta-Llama-3.1-8B"
+    dataset: "Davlan/sib200"
+    max_new_tokens: 20
+    eval_prefix: "_check_wo_period_ICL_5_bn"
+    source_lang: "english"
+    languages: "english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian"
+    adapter_method: "seq_bn"
+    lang_adapter_prefix: "Meta-Llama-31-8B_cc100"
+    use_la: ""
+    no_instr: ""
+    add_eng_instr: ""
+    format_prompt: ""
+    source_prompt: ""
+    stop_strings: "### Sentence Topic"
+    eval_all: ""
+    stop_at_first_upper: ""
+
+  # 15 llama2 bn nola sib200 + stop_at_first_upper - period
+  - <<: *default_values
+    model_name_or_path: "meta-llama/Meta-Llama-3.1-8B"
+    dataset: "Davlan/sib200"
+    max_new_tokens: 20
+    eval_prefix: "_check_wo_period_ICL_5_bn"
+    source_lang: "english"
+    languages: "english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian"
+    adapter_method: "seq_bn"
+    no_instr: ""
+    add_eng_instr: ""
+    format_prompt: ""
+    source_prompt: ""
+    stop_strings: "### Sentence Topic"
+    eval_all: ""
+    stop_at_first_upper: ""
+
+  # 2
+  - <<: *default_values
+    model_name_or_path: "meta-llama/Meta-Llama-3.1-8B"
+    dataset: "CohereForAI/aya_collection_language_split"
+    max_new_tokens: 120
+    eval_prefix: "ICL_5_bn"
+    source_lang: "spanish"
+    languages: "english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian"
+    adapter_method: "seq_bn"
+    lang_adapter_prefix: "Meta-Llama-31-8B_cc100"
+    use_la: ""
+    instr_keys: "chat"
+    no_instr: ""
+    add_eng_instr: ""
+    format_prompt: ""
+    source_prompt: ""
+    stop_strings: "### Sentence Topic ."
+    eval_all: ""
+
+  # 3
+  - <<: *default_values
+    model_name_or_path: "meta-llama/Meta-Llama-3.1-8B"
+    dataset: "CohereForAI/aya_collection_language_split"
+    max_new_tokens: 120
+    eval_prefix: "ICL_5_bn"
+    source_lang: "spanish"
+    languages: "english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian"
+    adapter_method: "seq_bn"
+    instr_keys: "chat"
+    no_instr: ""
+    add_eng_instr: ""
+    format_prompt: ""
+    source_prompt: ""
+    stop_strings: "### Sentence Topic ."
+    eval_all: ""
+
+  # 4
+  - <<: *default_values
+    model_name_or_path: "meta-llama/Meta-Llama-3.1-8B"
+    dataset: "CohereForAI/aya_collection_language_split"
+    max_new_tokens: 120
+    eval_prefix: "ICL_5_bn"
+    source_lang: "german"
+    languages: "english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian"
+    adapter_method: "seq_bn"
+    lang_adapter_prefix: "Meta-Llama-31-8B_cc100"
+    use_la: ""
+    instr_keys: "chat"
+    no_instr: ""
+    add_eng_instr: ""
+    format_prompt: ""
+    source_prompt: ""
+    stop_strings: "### Sentence Topic ."
+    eval_all: ""
+
+  # 5
+  - <<: *default_values
+    model_name_or_path: "meta-llama/Meta-Llama-3.1-8B"
+    dataset: "CohereForAI/aya_collection_language_split"
+    max_new_tokens: 120
+    eval_prefix: "ICL_5_bn"
+    source_lang: "german"
+    languages: "english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian"
+    adapter_method: "seq_bn"
+    instr_keys: "chat"
+    no_instr: ""
+    add_eng_instr: ""
+    format_prompt: ""
+    source_prompt: ""
+    stop_strings: "### Sentence Topic ."
+    eval_all: ""
+
+  # 6: throughput analysis noLA
+  - <<: *default_values
+    model_name_or_path: "meta-llama/Llama-2-7b-hf"
+    dataset: "CohereForAI/aya_collection_language_split"
+    max_new_tokens: 120
+    source_lang: "english"
+    languages: "english icelandic finnish"
+    adapter_method: "seq_bn"
+    instr_keys: "chat"
+    no_instr: ""
+    add_eng_instr: ""
+    format_prompt: ""
+    source_prompt: ""
+    stop_strings: "### Sentence Topic ."
+    do_throughput: ""
+
+  # 7: throughput analysis LA
+  - <<: *default_values
+    model_name_or_path: "meta-llama/Llama-2-7b-hf"
+    dataset: "CohereForAI/aya_collection_language_split"
+    max_new_tokens: 120
+    source_lang: "english"
+    languages: "english icelandic finnish"
+    adapter_method: "seq_bn"
+    use_la: ""
+    lang_adapter_prefix: "Llama-2-7b-hf_cc100"
+    lang_adapter_suffix: "12500"
+    instr_keys: "chat"
+    no_instr: ""
+    add_eng_instr: ""
+    format_prompt: ""
+    source_prompt: ""
+    stop_strings: "### Sentence Topic ."
+    do_throughput: ""
+
+  # 8: throughput analysis LA lora merge weights
+  - <<: *default_values
+    model_name_or_path: "meta-llama/Llama-2-7b-hf"
+    dataset: "CohereForAI/aya_collection_language_split"
+    max_new_tokens: 120
+    source_lang: "english"
+    languages: "english icelandic finnish"
+    adapter_method: "lora"
+    merge_weights: ""
+    use_la: ""
+    lang_adapter_prefix: "Llama-2-7b-hf_cc100"
+    lang_adapter_suffix: "lora-alpha"
+    instr_keys: "chat"
+    no_instr: ""
+    add_eng_instr: ""
+    format_prompt: ""
+    source_prompt: ""
+    stop_strings: "### Sentence Topic ."
+    do_throughput: ""
+
+  # 9: throughput analysis LA lora no merge
+  - <<: *default_values
+    model_name_or_path: "meta-llama/Llama-2-7b-hf"
+    dataset: "CohereForAI/aya_collection_language_split"
+    max_new_tokens: 120
+    source_lang: "english"
+    languages: "english icelandic finnish"
+    adapter_method: "lora"
+    use_la: ""
+    lang_adapter_prefix: "Llama-2-7b-hf_cc100"
+    lang_adapter_suffix: "lora-alpha"
+    instr_keys: "chat"
+    no_instr: ""
+    add_eng_instr: ""
+    format_prompt: ""
+    source_prompt: ""
+    stop_strings: "### Sentence Topic ."
+    do_throughput: ""
+
+
+    

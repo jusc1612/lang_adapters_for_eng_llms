@@ -1,0 +1,1200 @@
+defaults: &default_values
+  hf_token: "{{ env('HF_TOKEN', None) }}"
+  cache_dir: "{{ env('CACHE_DIR', None) }}"
+  adapter_path: "{{ env('ADAPTER_PATH', None) }}"
+  eval_dir: "{{ env('EVAL_DIR', None) }}"
+  language_ratios: '1.0'
+  max_length: 4096
+  use_init: ''
+  task: 'question-answering'
+  task_dataset: 'MLQA-en'
+  task_data_split: 'sentence_split'
+  temperature: 0.6
+  top_p: 0.9
+  seeds: '42 43 44 45 46'
+  languages: 'english german dutch swedish danish icelandic afrikaans spanish portuguese galician catalan finnish hungarian'
+  eval_all: ''
+
+configs:
+
+# 0
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_bn_en_mlqa'
+  ta_path_format: 'final'
+
+# 1
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_bn_de_mlqa'
+  ta_path_format: 'final'
+
+# 2
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'spanish'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_bn_es_mlqa'
+  ta_path_format: 'final'
+
+# 3
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_bn_en_sib200'
+  ta_path_format: 'final'
+
+# 4
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_bn_de_sib200'
+  ta_path_format: 'final'
+
+# 5
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'spanish'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_bn_es_sib200'
+  ta_path_format: 'final'
+
+# 6
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'english'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_lora_en_mlqa'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 7
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'german'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_lora_de_mlqa'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 8
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'spanish'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_lora_es_mlqa'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 9
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'english'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_lora_en_sib200'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 10
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'german'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_lora_de_sib200'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 11
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'spanish'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_lora_es_sib200'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 12
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_bn_en_mlqa'
+  ta_path_format: 'final'
+
+# 13
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_bn_de_mlqa'
+  ta_path_format: 'final'
+
+# 14
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'spanish'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_bn_es_mlqa'
+  ta_path_format: 'final'
+
+# 15
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_bn_en_sib200'
+  ta_path_format: 'final'
+
+# 16
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_bn_de_sib200'
+  ta_path_format: 'final'
+
+# 17
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'spanish'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_bn_es_sib200'
+  ta_path_format: 'final'
+
+# 18
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'english'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_lora_en_mlqa'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 19
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'german'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_lora_de_mlqa'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 20
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'spanish'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_lora_es_mlqa'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 21
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'english'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_lora_en_sib200'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 22
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'german'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_lora_de_sib200'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 23
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'spanish'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_lora_es_sib200'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 24
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_bn_en_mlqa'
+  ta_path_format: 'final'
+
+# 25
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_bn_de_mlqa'
+  ta_path_format: 'final'
+
+# 26
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'spanish'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_bn_es_mlqa'
+  ta_path_format: 'final'
+
+# 27
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_bn_en_sib200'
+  ta_path_format: 'final'
+
+# 28
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_bn_de_sib200'
+  ta_path_format: 'final'
+
+# 29
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'spanish'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_bn_es_sib200'
+  ta_path_format: 'final'
+
+# 30
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'english'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_lora_en_mlqa'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 31
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'german'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_lora_de_mlqa'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 32
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'spanish'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_lora_es_mlqa'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 33
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'english'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_lora_en_sib200'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 34
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'german'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_lora_de_sib200'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 35
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'spanish'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_lora_es_sib200'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 36
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_bn_cc100_en_mlqa'
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: '12500'
+  ta_path_format: 'final'
+
+# 37
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_bn_cc100_de_mlqa'
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: '12500'
+  ta_path_format: 'final'
+
+# 38
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'spanish'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_bn_cc100_es_mlqa'
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: '12500'
+  ta_path_format: 'final'
+
+# 39
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_bn_cc100_en_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: '12500'
+  ta_path_format: 'final'
+
+# 40
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_bn_cc100_de_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: '12500'
+  ta_path_format: 'final'
+
+# 41
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'spanish'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_bn_cc100_es_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: '12500'
+  ta_path_format: 'final'
+
+# 42
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'english'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_lora_cc100_en_mlqa'
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 43
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'german'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_lora_cc100_de_mlqa'
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 44
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'spanish'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_lora_cc100_es_mlqa'
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 45
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'english'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_lora_cc100_en_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 46
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'german'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_lora_cc100_de_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 47
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  source_lang: 'spanish'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-2_lora_cc100_es_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Llama-2-7b-hf_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 48
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_bn_cc100_en_mlqa'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-3-8B_cc100'
+  lang_adapter_suffix: '12500'
+  ta_path_format: 'final'
+
+# 49
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_bn_cc100_de_mlqa'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-3-8B_cc100'
+  lang_adapter_suffix: '12500'
+  ta_path_format: 'final'
+
+# 50
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'spanish'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_bn_cc100_es_mlqa'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-3-8B_cc100'
+  lang_adapter_suffix: '12500'
+  ta_path_format: 'final'
+
+# 51
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_bn_cc100_en_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-3-8B_cc100'
+  lang_adapter_suffix: '12500'
+  ta_path_format: 'final'
+
+# 52
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_bn_cc100_de_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-3-8B_cc100'
+  lang_adapter_suffix: '12500'
+  ta_path_format: 'final'
+
+# 53
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'spanish'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_bn_cc100_es_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-3-8B_cc100'
+  lang_adapter_suffix: '12500'
+  ta_path_format: 'final'
+
+# 54
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'english'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_lora_cc100_en_mlqa'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-3-8B_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 55
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'german'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_lora_cc100_de_mlqa'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-3-8B_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 56
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'spanish'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_lora_cc100_es_mlqa'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-3-8B_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 57
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'english'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_lora_cc100_en_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-3-8B_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 58
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'german'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_lora_cc100_de_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-3-8B_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 59
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  source_lang: 'spanish'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-3_lora_cc100_es_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-3-8B_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 60
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_bn_cc100_en_mlqa'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-31-8B_cc100'
+  ta_path_format: 'final'
+
+# 61
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_bn_cc100_de_mlqa'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-31-8B_cc100'
+  ta_path_format: 'final'
+
+# 62
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'spanish'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_bn_cc100_es_mlqa'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-31-8B_cc100'
+  ta_path_format: 'final'
+
+# 63
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'english'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_bn_cc100_en_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-31-8B_cc100'
+  ta_path_format: 'final'
+
+# 64
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'german'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_bn_cc100_de_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-31-8B_cc100'
+  ta_path_format: 'final'
+
+# 65
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'spanish'
+  adapter_method: 'seq_bn'
+  eval_prefix: 'bn'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_bn_cc100_es_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-31-8B_cc100'
+  ta_path_format: 'final'
+
+# 66
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'english'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_lora_cc100_en_mlqa'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-31-8B_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 67
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'german'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_lora_cc100_de_mlqa'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-31-8B_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 68
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'spanish'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'CohereForAI/aya_collection_language_split'
+  max_new_tokens: 100
+  instr_keys: 'chat'
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_lora_cc100_es_mlqa'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-31-8B_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 69
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'english'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_lora_cc100_en_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-31-8B_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 70
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'german'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_lora_cc100_de_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-31-8B_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  ta_path_format: 'final'
+  merge_weights: ''
+
+# 71
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  source_lang: 'spanish'
+  adapter_method: 'lora'
+  eval_prefix: 'lora'
+  dataset: 'Davlan/sib200'
+  max_new_tokens: 20
+  format_prompt: ''
+  source_prompt: 'english'
+  use_ta: ''
+  task_adapter: 'llama-31_lora_cc100_es_sib200'
+  use_la: ''
+  lang_adapter_prefix: 'Meta-Llama-31-8B_cc100'
+  lang_adapter_suffix: 'lora-alpha'
+  ta_path_format: 'final'
+  merge_weights: ''

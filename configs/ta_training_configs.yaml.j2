@@ -1,0 +1,1338 @@
+defaults: &default_values
+  hf_token: "{{ env('HF_TOKEN', None) }}"
+  cache_dir: "{{ env('CACHE_DIR', None) }}"
+  output_dir: "{{ env('OUTPUT_DIR', None) }}"
+  ta_path: 'final'
+  mode: 'train'
+  do_train: ''
+  overwrite_output_dir: ''
+  ddp_backend: 'nccl'
+  task: 'question-answering'
+  task_dataset: 'MLQA-en'
+  task_dataset_split: 'sentence_split'
+  logging_steps: 100
+  log_level: 'info'
+  report_to: 'wandb'
+  data_seed: 42
+  save_steps: 100
+  eval_steps: 100
+  do_eval: ''
+  eval_strategy: 'steps'
+  save_total_limit: 3
+  sampler: 'random'
+
+configs:
+
+# 0
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'english'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  ta_name: 'llama-2_bn_en_mlqa'
+
+# 1
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'german'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  ta_name: 'llama-2_bn_de_mlqa'
+
+# 2
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'spanish'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  ta_name: 'llama-2_bn_es_mlqa'
+
+# 3
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'english'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  ta_name: 'llama-2_bn_en_sib200'
+
+# 4
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'german'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  ta_name: 'llama-2_bn_de_sib200'
+
+# 5
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'spanish'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  ta_name: 'llama-2_bn_es_sib200'
+
+# 6
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'english'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  ta_name: 'llama-2_lora_en_mlqa'
+
+# 7
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'german'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  ta_name: 'llama-2_lora_de_mlqa'
+
+# 8
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'spanish'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  ta_name: 'llama-2_lora_es_mlqa'
+
+# 9
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'english'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  ta_name: 'llama-2_lora_en_sib200'
+
+# 10
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'german'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  ta_name: 'llama-2_lora_de_sib200'
+
+# 11
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'spanish'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  ta_name: 'llama-2_lora_es_sib200'
+
+# 12
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'english'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  ta_name: 'llama-3_bn_en_mlqa'
+
+# 13
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'german'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  ta_name: 'llama-3_bn_de_mlqa'
+
+# 14
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'spanish'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  ta_name: 'llama-3_bn_es_mlqa'
+
+# 15
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'english'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  ta_name: 'llama-3_bn_en_sib200'
+
+# 16
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'german'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  ta_name: 'llama-3_bn_de_sib200'
+
+# 17
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'spanish'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  ta_name: 'llama-3_bn_es_sib200'
+
+# 18
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  ta_languages: 'english'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  ta_name: 'llama-3_lora_en_mlqa'
+
+# 19
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  ta_languages: 'german'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  ta_name: 'llama-3_lora_de_mlqa'
+
+# 20
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  ta_languages: 'spanish'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  ta_name: 'llama-3_lora_es_mlqa'
+
+# 21
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  ta_languages: 'english'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  ta_name: 'llama-3_lora_en_sib200'
+
+# 22
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  ta_languages: 'german'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  ta_name: 'llama-3_lora_de_sib200'
+
+# 23
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  ta_languages: 'spanish'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  ta_name: 'llama-3_lora_es_sib200'
+
+# 24
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'english'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  ta_name: 'llama-31_bn_en_mlqa'
+
+# 25
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'german'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  ta_name: 'llama-31_bn_de_mlqa'
+
+# 26
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'spanish'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  ta_name: 'llama-31_bn_es_mlqa'
+
+# 27
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'english'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  ta_name: 'llama-31_bn_en_sib200'
+
+# 28
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'german'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  ta_name: 'llama-31_bn_de_sib200'
+
+# 29
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'spanish'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  ta_name: 'llama-31_bn_es_sib200'
+
+# 30
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  ta_languages: 'english'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  ta_name: 'llama-31_lora_en_mlqa'
+
+# 31
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  ta_languages: 'german'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  ta_name: 'llama-31_lora_de_mlqa'
+
+# 32
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  ta_languages: 'spanish'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  ta_name: 'llama-31_lora_es_mlqa'
+
+# 33
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  ta_languages: 'english'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  ta_name: 'llama-31_lora_en_sib200'
+
+# 34
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  ta_languages: 'german'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  ta_name: 'llama-31_lora_de_sib200'
+
+# 35
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  ta_languages: 'spanish'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  ta_name: 'llama-31_lora_es_sib200'
+
+# 36
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'english'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  la_name: 'Llama-2-7b-hf_cc100_en_12500'
+  ta_name: 'llama-2_bn_cc100_en_mlqa'
+
+# 37
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'german'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  la_name: 'Llama-2-7b-hf_cc100_de_12500'
+  ta_name: 'llama-2_bn_cc100_de_mlqa'
+
+# 38
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'spanish'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  la_name: 'Llama-2-7b-hf_cc100_es_12500'
+  ta_name: 'llama-2_bn_cc100_es_mlqa'
+
+# 39
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'english'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  la_name: 'Llama-2-7b-hf_cc100_en_12500'
+  ta_name: 'llama-2_bn_cc100_en_sib200'
+
+# 40
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'german'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  la_name: 'Llama-2-7b-hf_cc100_de_12500'
+  ta_name: 'llama-2_bn_cc100_de_sib200'
+
+# 41
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'spanish'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  la_name: 'Llama-2-7b-hf_cc100_es_12500'
+  ta_name: 'llama-2_bn_cc100_es_sib200'
+
+# 42
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'english'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  la_name: 'Llama-2-7b-hf_cc100_en_lora-alpha'
+  ta_name: 'llama-2_lora_cc100_en_mlqa'
+  merge_weights: ''
+
+# 43
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'german'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  la_name: 'Llama-2-7b-hf_cc100_de_lora-alpha'
+  ta_name: 'llama-2_lora_cc100_de_mlqa'
+  merge_weights: ''
+
+# 44
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'spanish'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  la_name: 'Llama-2-7b-hf_cc100_es_lora-alpha'
+  ta_name: 'llama-2_lora_cc100_es_mlqa'
+  merge_weights: ''
+
+# 45
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'english'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  la_name: 'Llama-2-7b-hf_cc100_en_lora-alpha'
+  ta_name: 'llama-2_lora_cc100_en_sib200'
+  merge_weights: ''
+
+# 46
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'german'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  la_name: 'Llama-2-7b-hf_cc100_de_lora-alpha'
+  ta_name: 'llama-2_lora_cc100_de_sib200'
+  merge_weights: ''
+
+# 47
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Llama-2-7b-hf'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'spanish'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  la_name: 'Llama-2-7b-hf_cc100_es_lora-alpha'
+  ta_name: 'llama-2_lora_cc100_es_sib200'
+  merge_weights: ''
+
+# 48
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'english'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  la_name: 'Meta-Llama-3-8B_cc100_en_12500'
+  ta_name: 'llama-3_bn_cc100_en_mlqa'
+
+# 49
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'german'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  la_name: 'Meta-Llama-3-8B_cc100_de_12500'
+  ta_name: 'llama-3_bn_cc100_de_mlqa'
+
+# 50
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'spanish'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  la_name: 'Meta-Llama-3-8B_cc100_es_12500'
+  ta_name: 'llama-3_bn_cc100_es_mlqa'
+
+# 51
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'english'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  la_name: 'Meta-Llama-3-8B_cc100_en_12500'
+  ta_name: 'llama-3_bn_cc100_en_sib200'
+
+# 52
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'german'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  la_name: 'Meta-Llama-3-8B_cc100_de_12500'
+  ta_name: 'llama-3_bn_cc100_de_sib200'
+
+# 53
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'spanish'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  la_name: 'Meta-Llama-3-8B_cc100_es_12500'
+  ta_name: 'llama-3_bn_cc100_es_sib200'
+
+# 54
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  ta_languages: 'english'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  la_name: 'Meta-Llama-3-8B_cc100_en_lora-alpha'
+  ta_name: 'llama-3_lora_cc100_en_mlqa'
+  merge_weights: ''
+
+# 55
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  ta_languages: 'german'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  la_name: 'Meta-Llama-3-8B_cc100_de_lora-alpha'
+  ta_name: 'llama-3_lora_cc100_de_mlqa'
+  merge_weights: ''
+
+# 56
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  ta_languages: 'spanish'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  la_name: 'Meta-Llama-3-8B_cc100_es_lora-alpha'
+  ta_name: 'llama-3_lora_cc100_es_mlqa'
+  merge_weights: ''
+
+# 57
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  ta_languages: 'english'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  la_name: 'Meta-Llama-3-8B_cc100_en_lora-alpha'
+  ta_name: 'llama-3_lora_cc100_en_sib200'
+  merge_weights: ''
+
+# 58
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  ta_languages: 'german'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  la_name: 'Meta-Llama-3-8B_cc100_de_lora-alpha'
+  ta_name: 'llama-3_lora_cc100_de_sib200'
+  merge_weights: ''
+
+# 59
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3-8B'
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  ta_languages: 'spanish'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  la_name: 'Meta-Llama-3-8B_cc100_es_lora-alpha'
+  ta_name: 'llama-3_lora_cc100_es_sib200'
+  merge_weights: ''
+
+# 60
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'english'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  la_name: 'Meta-Llama-31-8B_cc100_en'
+  ta_name: 'llama-31_bn_cc100_en_mlqa'
+
+# 61
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'german'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  la_name: 'Meta-Llama-31-8B_cc100_de'
+  ta_name: 'llama-31_bn_cc100_de_mlqa'
+
+# 62
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'spanish'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  la_name: 'Meta-Llama-31-8B_cc100_es'
+  ta_name: 'llama-31_bn_cc100_es_mlqa'
+
+# 63
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'english'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  la_name: 'Meta-Llama-31-8B_cc100_en'
+  ta_name: 'llama-31_bn_cc100_en_sib200'
+
+# 64
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'german'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  la_name: 'Meta-Llama-31-8B_cc100_de'
+  ta_name: 'llama-31_bn_cc100_de_sib200'
+
+# 65
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  ta_languages: 'spanish'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  adapter_config: 'seq_bn'
+  train_adapter: ''
+  la_name: 'Meta-Llama-31-8B_cc100_es'
+  ta_name: 'llama-31_bn_cc100_es_sib200'
+
+# 66
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  ta_languages: 'english'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  la_name: 'Meta-Llama-31-8B_cc100_en_lora-alpha'
+  ta_name: 'llama-31_lora_cc100_en_mlqa'
+  merge_weights: ''
+
+# 67
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  ta_languages: 'german'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  la_name: 'Meta-Llama-31-8B_cc100_de_lora-alpha'
+  ta_name: 'llama-31_lora_cc100_de_mlqa'
+  merge_weights: ''
+
+# 68
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  ta_languages: 'spanish'
+  lang_ratio: '1.0'
+  dataset_name: 'CohereForAI/aya_collection_language_split'
+  num_train_epochs: 3
+  instr_keys: 'chat'
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  la_name: 'Meta-Llama-31-8B_cc100_es_lora-alpha'
+  ta_name: 'llama-31_lora_cc100_es_mlqa'
+  merge_weights: ''
+
+# 69
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  ta_languages: 'english'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  la_name: 'Meta-Llama-31-8B_cc100_en_lora-alpha'
+  ta_name: 'llama-31_lora_cc100_en_sib200'
+  merge_weights: ''
+
+# 70
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  ta_languages: 'german'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  la_name: 'Meta-Llama-31-8B_cc100_de_lora-alpha'
+  ta_name: 'llama-31_lora_cc100_de_sib200'
+  merge_weights: ''
+
+# 71
+- <<: *default_values
+  model_name_or_path: 'meta-llama/Meta-Llama-3.1-8B'
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  ta_languages: 'spanish'
+  lang_ratio: '1.0'
+  dataset_name: 'Davlan/sib200'
+  num_train_epochs: 20
+  english_format: ''
+  source_prompt: 'english'
+  peft_type: 'LORA'
+  task_type: 'CAUSAL_LM'
+  lora_rank: 64
+  lora_alpha: 128
+  adapter_dropout: 0.1
+  attn_matrices: 'q_proj v_proj k_proj'
+  la_name: 'Meta-Llama-31-8B_cc100_es_lora-alpha'
+  ta_name: 'llama-31_lora_cc100_es_sib200'
+  merge_weights: ''
