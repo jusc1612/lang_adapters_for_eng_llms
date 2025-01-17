@@ -12,7 +12,7 @@ Follow these steps to set up the project before running any scripts:
    git clone https://github.com/jusc1612/lang_adapters_for_eng_llms.git
    cd lang_adapters_for_eng_llms
 
-2. **Create and actiavte a Conda environment**
+2. **Create and activate a Conda environment**
    - Depending on the adapter architecture you're using, different Conda environments are required. Stick to the environment names as stated below to avoid errors. 
    - For adapters using the bottleneck architecture, the [Adapters](https://github.com/adapter-hub/adapters) library is used. Use the following command to create an environment with all required dependencies:
      ```bash
